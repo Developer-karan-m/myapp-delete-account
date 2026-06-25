@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Delete Account — Anime Culture</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background: #0d0d14;
+      color: #e8e6f0;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem 1rem;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 460px;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 2rem;
+    }
+
+    .logo-icon {
+      width: 40px;
+      height: 40px;
+      background: linear-gradient(135deg, #7c5cfc, #c45cfc);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+    }
+
+    .logo-text {
+      font-size: 18px;
+      font-weight: 600;
+      color: #fff;
+      letter-spacing: 0.3px;
+    }
+
+    .logo-text span {
+      color: #a07cfc;
+    }
+
+    .card {
+      background: #16151f;
+      border: 1px solid #2a2840;
+      border-radius: 16px;
+      padding: 2rem;
+    }
+
+    .card-header {
+      margin-bottom: 1.5rem;
+    }
+
+    .card-header h1 {
+      font-size: 20px;
+      font-weight: 600;
+      color: #fff;
+      margin-bottom: 0.4rem;
+    }
+
+    .card-header p {
+      font-size: 14px;
+      color: #8b87a8;
+      line-height: 1.6;
+    }
+
+    .warning-box {
+      background: #1f1018;
+      border: 1px solid #5c2a3a;
+      border-radius: 10px;
+      padding: 0.9rem 1rem;
+      margin-bottom: 1.5rem;
+      display: flex;
+      gap: 10px;
+      align-items: flex-start;
+    }
+
+    .warning-icon {
+      font-size: 16px;
+      margin-top: 1px;
+      flex-shrink: 0;
+    }
+
+    .warning-box p {
+      font-size: 13px;
+      color: #d4708a;
+      line-height: 1.5;
+    }
+
+    .form-group {
+      margin-bottom: 1.25rem;
+    }
+
+    label {
+      display: block;
+      font-size: 13px;
+      color: #8b87a8;
+      margin-bottom: 6px;
+      font-weight: 500;
+    }
+
+    input, textarea, select {
+      width: 100%;
+      background: #0d0d14;
+      border: 1px solid #2a2840;
+      border-radius: 8px;
+      padding: 10px 12px;
+      color: #e8e6f0;
+      font-size: 14px;
+      font-family: inherit;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+
+    input:focus, textarea:focus, select:focus {
+      border-color: #7c5cfc;
+    }
+
+    input::placeholder, textarea::placeholder {
+      color: #3e3c54;
+    }
+
+    textarea {
+      height: 90px;
+      resize: vertical;
+    }
+
+    select option {
+      background: #16151f;
+    }
+
+    .btn-delete {
+      width: 100%;
+      background: #c0294a;
+      color: #fff;
+      border: none;
+      border-radius: 10px;
+      padding: 12px;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.2s, transform 0.1s;
+      margin-top: 0.25rem;
+    }
+
+    .btn-delete:hover { background: #a8223f; }
+    .btn-delete:active { transform: scale(0.98); }
+
+    .divider {
+      border: none;
+      border-top: 1px solid #2a2840;
+      margin: 1.25rem 0;
+    }
+
+    .cancel-link {
+      display: block;
+      text-align: center;
+      font-size: 13px;
+      color: #8b87a8;
+      text-decoration: none;
+      margin-top: 1rem;
+      transition: color 0.2s;
+    }
+
+    .cancel-link:hover { color: #a07cfc; }
+
+    /* Success state */
+    .success-state {
+      display: none;
+      text-align: center;
+      padding: 1rem 0;
+    }
+
+    .success-icon {
+      font-size: 48px;
+      margin-bottom: 1rem;
+    }
+
+    .success-state h2 {
+      font-size: 18px;
+      font-weight: 600;
+      color: #fff;
+      margin-bottom: 0.5rem;
+    }
+
+    .success-state p {
+      font-size: 14px;
+      color: #8b87a8;
+      line-height: 1.6;
+    }
+
+    .footer {
+      margin-top: 1.5rem;
+      text-align: center;
+      font-size: 12px;
+      color: #3e3c54;
+    }
+
+    .footer a { color: #5a567a; text-decoration: none; }
+    .footer a:hover { color: #a07cfc; }
+  </style>
+</head>
+<body>
+  <div class="container">
+
+    <div class="logo">
+      <div class="logo-icon">⛩️</div>
+      <div class="logo-text">Anime <span>Culture</span></div>
+    </div>
+
+    <div class="card">
+
+      <!-- Form State -->
+      <div id="form-section">
+        <div class="card-header">
+          <h1>Delete your account</h1>
+          <p>We're sorry to see you go. Once deleted, your account and all data will be permanently removed and cannot be recovered.</p>
+        </div>
+
+        <div class="warning-box">
+          <span class="warning-icon">⚠️</span>
+          <p>This will erase your profile, watch history, favorites, and all other data associated with your account.</p>
+        </div>
+
+        <div class="form-group">
+          <label for="email">Registered email address</label>
+          <input type="email" id="email" placeholder="you@example.com" />
+        </div>
+
+        <div class="form-group">
+          <label for="reason">Reason for leaving (optional)</label>
+          <select id="reason">
+            <option value="" disabled selected>Select a reason</option>
+            <option>I no longer use the app</option>
+            <option>I have a duplicate account</option>
+            <option>Privacy concerns</option>
+            <option>Missing features I need</option>
+            <option>Technical issues</option>
+            <option>Other</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="feedback">Additional feedback (optional)</label>
+          <textarea id="feedback" placeholder="Tell us how we can improve..."></textarea>
+        </div>
+
+        <hr class="divider" />
+
+        <button class="btn-delete" onclick="handleDelete()">
+          🗑️ &nbsp;Permanently delete my account
+        </button>
+
+        <a href="#" class="cancel-link">← Go back, keep my account</a>
+      </div>
+
+      <!-- Success State -->
+      <div class="success-state" id="success-section">
+        <div class="success-icon">✅</div>
+        <h2>Request submitted</h2>
+        <p>Your account deletion request has been received. Your account will be permanently deleted within <strong>7 days</strong>. A confirmation will be sent to your email.</p>
+      </div>
+
+    </div>
+
+    <div class="footer">
+      &copy; 2025 Anime Culture &nbsp;·&nbsp;
+      <a href="#">Privacy Policy</a> &nbsp;·&nbsp;
+      <a href="#">Contact Support</a>
+    </div>
+
+  </div>
+
+  <script>
+    function handleDelete() {
+      const email = document.getElementById('email').value.trim();
+      if (!email) {
+        alert('Please enter your registered email address.');
+        return;
+      }
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!emailRegex.test(email)) {
+        alert('Please enter a valid email address.');
+        return;
+      }
+      document.getElementById('form-section').style.display = 'none';
+      document.getElementById('success-section').style.display = 'block';
+    }
+  </script>
+</body>
+</html>
